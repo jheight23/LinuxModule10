@@ -1,0 +1,33 @@
+import sys
+import string 
+
+n = sys.argv[1]
+message = input('Enter your message :')
+message = message.upper()
+message = message.replace(" ", " ")
+message = message.translate(str.maketrans('', '', string.punctuation))
+
+outcome = ""
+count = 0
+
+for i in range(len(message)):
+  char = message[i]
+  num = ord(char)
+  
+  if((num + int(n)) > 90):
+    addon = (num + int(n)) - 26
+  else:
+    addon = num + int(n)
+   
+  if ((i%5) == 0) and ( i > 0):
+    outcome = outcome + " "
+    count += 1
+   
+  if (count == 10):
+    print(outcome)
+    count = 0
+    outcome = ""
+    
+  outcome += chr(addon)
+   
+print(outcome)
